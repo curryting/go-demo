@@ -1,0 +1,40 @@
+/**
+ * api语法示例及语法说明
+ */
+
+    // api语法版本
+syntax = "v1"
+
+info(
+    author: "curryting"
+    date:   "2022-11-10"
+    desc:   "api语法示例及语法说明"
+)
+
+// type literal
+//type Foo{
+//    Foo int `json:"foo"`
+//}
+
+// type group
+
+type(
+    UserReq{
+        Id int64 `json:"id"`
+    }
+    UserRes{
+        Name string `json:"name"`
+        Age int `json:"age"`
+    }
+)
+
+// service block
+//@server(
+//    jwt:   Auth
+//    group: foo
+//)
+service user-api{
+    @doc "获取用户信息"
+    @handler foo
+    get /user/ingo (UserReq) returns (UserRes)
+}
