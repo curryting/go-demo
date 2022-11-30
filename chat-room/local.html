@@ -12,7 +12,7 @@
 </head>
 <body>
 <div style="width: 800px;height: 600px;margin: 30px auto;text-align: center">
-    <h1>www.5lmh.comy演示聊天室</h1>
+    <h1>curryting聊天室</h1>
     <div style="width: 800px;border: 1px solid gray;height: 300px;">
         <div style="width: 200px;height: 300px;float: left;text-align: left;">
             <p><span>当前在线:</span><span id="user_num">0</span></p>
@@ -37,6 +37,7 @@
     };
     ws.onmessage = function (e) {
         var msg = JSON.parse(e.data);
+        console.log("收到socket消息为：", msg)
         var sender, user_name, name_list, change_type;
         switch (msg.type) {
             case 'system':
@@ -65,6 +66,7 @@
         listMsg(data);
     };
     function confirm(event) {
+        console.log("event", event)
         var key_num = event.keyCode;
         if (13 == key_num) {
             send();

@@ -14,15 +14,20 @@ type connection struct {
 	data *Data
 }
 
-var wu = &websocket.Upgrader{ReadBufferSize: 512,
-	WriteBufferSize: 512, CheckOrigin: func(r *http.Request) bool { return true }}
+var wu = &websocket.Upgrader{
+	ReadBufferSize:  512,
+	WriteBufferSize: 512,
+	CheckOrigin:     func(r *http.Request) bool { return true }}
 
+// 处理当前连接
 func myws(w http.ResponseWriter, r *http.Request) {
+	// 将HTTP服务器连接升级到WebSocket协议
 	ws, err := wu.Upgrade(w, r, nil)
 	if err != nil {
 		return
 	}
 	c := &connection{sc: make(chan []byte, 256), ws: ws, data: &Data{}}
+	//log.Println("myws c is", c)
 	h.r <- c
 	go c.writer()
 	c.reader()
@@ -54,6 +59,7 @@ func (c *connection) reader() {
 			break
 		}
 		json.Unmarshal(message, &c.data)
+		fmt.Println("reader c.data is", c.data)
 		switch c.data.Type {
 		case "login":
 			c.data.User = c.data.Content
