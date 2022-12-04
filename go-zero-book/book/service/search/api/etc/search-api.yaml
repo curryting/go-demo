@@ -1,6 +1,23 @@
 Name: search-api
 Host: 0.0.0.0
 Port: 8889
+Mysql:
+  #  DataSource: $user:$password@tcp($url)/$db?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+  DataSource: root:123456@tcp(127.0.0.1:3306)/curryting?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: 127.0.0.1:6379
+    Pass:
+    Type: node
+
+# $user: mysql数据库user
+# $password: mysql数据库密码
+# $url: mysql数据库连接地址
+# $db: mysql数据库db名称，即user表所在database
+# $host: redis连接地址 格式：ip:port，如:127.0.0.1:6379
+# $pass: redis密码
+
 Auth:
   AccessSecret: abcdefghijk
-  AccessExpire: 300
+  AccessExpire: 86400
+# $AccessSecret：生成jwt token的密钥，最简单的方式可以使用一个uuid值。
+# $AccessExpire：jwt token有效期，单位：秒

@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"log"
 
 	"book/service/search/api/internal/svc"
 	"book/service/search/api/internal/types"
@@ -25,6 +26,10 @@ func NewSearchLogic(ctx context.Context, svcCtx *svc.ServiceContext) *SearchLogi
 
 func (l *SearchLogic) Search(req *types.SearchReq) (resp *types.SearchReply, err error) {
 	// todo: add your logic here and delete this line
-
-	return
+	name := l.ctx.Value("name")
+	log.Println("name is ", name)
+	return &types.SearchReply{
+		Name:  "hi, curryting",
+		Count: 0,
+	}, nil
 }
