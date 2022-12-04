@@ -1,0 +1,28 @@
+type (
+	SearchReq {
+		// 图书名称
+		Name string `form:"name"`
+	}
+
+	SearchReply {
+		Name  string `json:"name"`
+		Count int    `json:"count"`
+	}
+)
+
+@server(
+	jwt: Auth
+)
+service search-api {
+	@handler search
+	get /search/do (SearchReq) returns (SearchReply)
+}
+
+service search-api {
+	@handler ping
+	get /search/ping
+}
+
+// jwt: Auth：开启jwt鉴权
+// 如果路由需要jwt鉴权，则需要在service上方声明此语法标志，如上文中的 /search/do
+// 不需要jwt鉴权的路由就无需声明，如上文中/search/ping
