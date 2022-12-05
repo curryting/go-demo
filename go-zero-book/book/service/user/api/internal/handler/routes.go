@@ -4,6 +4,7 @@ package handler
 import (
 	"net/http"
 
+	user "book/service/user/api/internal/handler/user"
 	"book/service/user/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -15,17 +16,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				Method:  http.MethodPost,
 				Path:    "/user/login",
-				Handler: loginHandler(serverCtx),
+				Handler: user.LoginHandler(serverCtx),
 			},
-		},
-	)
-
-	server.AddRoutes(
-		[]rest.Route{
 			{
 				Method:  http.MethodGet,
 				Path:    "/user/search",
-				Handler: searchHandler(serverCtx),
+				Handler: user.SearchHandler(serverCtx),
 			},
 		},
 	)

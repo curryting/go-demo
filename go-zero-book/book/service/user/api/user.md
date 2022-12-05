@@ -1,4 +1,4 @@
-### 1. N/A
+### 1. "用户登录"
 
 1. route definition
 
@@ -34,7 +34,7 @@ type LoginReply struct {
 }
 ```
 
-### 2. N/A
+### 2. "查询用户信息"
 
 1. route definition
 

@@ -1,3 +1,6 @@
+// api语法版本
+syntax = "v1"
+
 type (
 	LoginReq {
 		Username string `json:"username"`
@@ -16,6 +19,7 @@ type (
 	SearchReq {
 		Name string `json:"name"`
 	}
+
 	SearchReply {
 		Id       int64  `json:"id"`
 		Name     string `json:"name"`
@@ -25,12 +29,16 @@ type (
 	}
 )
 
-service user-api {
-	@handler login
-	post /user/login (LoginReq) returns (LoginReply)
-}
+@server(
+	group: user
+)
 
 service user-api {
+	@doc "用户登录"
+	@handler login
+	post /user/login (LoginReq) returns (LoginReply)
+	
+	@doc "查询用户信息"
 	@handler search
 	get /user/search (SearchReq) returns (SearchReply)
 }
