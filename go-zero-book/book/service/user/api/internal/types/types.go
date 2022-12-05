@@ -14,3 +14,15 @@ type LoginReply struct {
 	AccessExpire int64  `json:"accessExpire"`
 	RefreshAfter int64  `json:"refreshAfter"`
 }
+
+type SearchReq struct {
+	Name string `json:"name"`
+}
+
+type SearchReply struct {
+	Id       int64  `json:"id"`
+	Name     string `json:"name"`
+	Gender   string `json:"gender"`
+	Number   string `json:"number"`
+	Password string `json:"password"`
+}

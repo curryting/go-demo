@@ -1,3 +1,13 @@
+syntax = "v1"
+
+info(
+	title: "搜索接口"
+	desc: "goctl一键生成"
+	author: "curryting"
+	email: "907952235@qq.com"
+	version: "v1.0"
+)
+
 type (
 	SearchReq {
 		// 图书名称
