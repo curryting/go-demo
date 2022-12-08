@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"user-rpc/internal/config"
-	"user-rpc/internal/server"
-	"user-rpc/internal/svc"
-	"user-rpc/pb"
+	"book/service/user/rpc/internal/config"
+	"book/service/user/rpc/internal/server"
+	"book/service/user/rpc/internal/svc"
+	"book/service/user/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -20,6 +20,7 @@ var configFile = flag.String("f", "etc/user.yaml", "the config file")
 
 func main() {
 	flag.Parse()
+
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 	ctx := svc.NewServiceContext(c)

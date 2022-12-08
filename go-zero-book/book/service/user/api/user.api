@@ -1,6 +1,12 @@
 // api语法版本
 syntax = "v1"
 
+info(
+	author: "curryting"
+	date:   "2022-12-06"
+	desc:   "api语法学习"
+)
+// 登录参数
 type (
 	LoginReq {
 		Username string `json:"username"`
@@ -16,6 +22,7 @@ type (
 		RefreshAfter int64  `json:"refreshAfter"`
 	}
 )
+// 查询参数
 type (
 	SearchReq {
 		Name string `form:"name"`
@@ -29,6 +36,29 @@ type (
 		Password string `json:"password"`
 	}
 )
+// 注册参数
+type (
+	RegisterReq {
+		Name     string `json:"name"`
+		Gender   string `json:"gender"`
+		Number   string `json:"number"`
+		Password string `json:"password"`
+	}
+	RegisterRes {
+		Msg string `json:"msg"`
+	}
+)
+
+// 用户信息
+type (
+	UserInfoReq {
+		Id int64 `json:"id"`
+	}
+	UserInfoRes {
+		Id   int64  `json:"id"`
+		Name string `json:"name"`
+	}
+)
 
 @server(
 	group: user
@@ -39,7 +69,15 @@ service user-api {
 	@handler login
 	post /user/login (LoginReq) returns (LoginReply)
 	
+	@doc "用户注册"
+	@handler register
+	get /user/register (RegisterReq) returns (RegisterRes)
+	
 	@doc "查询用户信息"
 	@handler search
 	get /user/search (SearchReq) returns (SearchReply)
+	
+	@doc "查询用户信息"
+	@handler userInfo
+	get /user/userInfo (UserInfoReq) returns (UserInfoRes)
 }

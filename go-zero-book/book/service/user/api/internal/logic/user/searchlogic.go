@@ -1,14 +1,13 @@
 package user
 
 import (
+	"book/service/user/api/internal/svc"
+	"book/service/user/api/internal/types"
 	"book/service/user/model"
 	"context"
 	"errors"
 	"log"
 	"strings"
-
-	"book/service/user/api/internal/svc"
-	"book/service/user/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -49,5 +48,4 @@ func (s *SearchLogic) Search(req *types.SearchReq) (resp *types.SearchReply, err
 		Number:   userInfo.Number,
 		Password: userInfo.Password,
 	}, nil
-	return
 }
