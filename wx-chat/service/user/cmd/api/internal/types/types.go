@@ -19,7 +19,7 @@ type LoginReq struct {
 type LoginRes struct {
 	Id           int64  `json:"id"`
 	Username     string `json:"username"`
-	Gender       string `json:"gender"`
+	Gender       int64 `json:"gender"`
 	AccessToken  string `json:"accessToken"`
 	AccessExpire int64  `json:"accessExpire"`
 	RefreshAfter int64  `json:"refreshAfter"`
@@ -33,5 +33,5 @@ type FindUserRes struct {
 	Id       int64  `json:"id"`
 	Username string `json:"username"`
 	Password string `json:"password"`
-	Gender   string `json:"gender"`
+	Gender   int64 `json:"gender"`
 }

@@ -33,9 +33,9 @@ func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.RegisterRe
 	}
 	userInfo, err := l.svcCtx.UserModel.FindOneByUsername(l.ctx, req.Username)
 	log.Println("查询用户信息结果：", userInfo)
-	if err != nil {
-		return nil, err
-	}
+	//if err != nil {
+	//	return nil, err
+	//}
 	if err != model.ErrNotFound {
 		return nil, errors.New("用户名已存在")
 	}
@@ -49,5 +49,5 @@ func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.RegisterRe
 		return nil, err
 	}
 	log.Println("注册结果返回：", insertRes)
-	return resp, nil
+	return &types.RegisterRes{Msg: "注册成功"}, nil
 }
