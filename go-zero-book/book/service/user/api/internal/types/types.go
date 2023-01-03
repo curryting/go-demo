@@ -16,7 +16,7 @@ type LoginReply struct {
 }
 
 type SearchReq struct {
-	Name string `json:"name"`
+	Name string `form:"name"`
 }
 
 type SearchReply struct {
@@ -25,4 +25,15 @@ type SearchReply struct {
 	Gender   string `json:"gender"`
 	Number   string `json:"number"`
 	Password string `json:"password"`
+}
+
+type RegisterReq struct {
+	Name     string `json:"name"`
+	Gender   string `json:"gender"`
+	Number   string `json:"number"`
+	Password string `json:"password"`
+}
+
+type RegisterRes struct {
+	Msg string `json:"msg"`
 }
