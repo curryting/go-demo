@@ -8,7 +8,6 @@ CacheRedis:
   - Host: 127.0.0.1:6379
     Pass:
     Type: node
-
 # $user: mysql数据库user
 # $password: mysql数据库密码
 # $url: mysql数据库连接地址
@@ -16,8 +15,19 @@ CacheRedis:
 # $host: redis连接地址 格式：ip:port，如:127.0.0.1:6379
 # $pass: redis密码
 
+Log:
+  ServiceName: user-api
+  Mode: console
+  Level: error
+
 Auth:
   AccessSecret: abcdefghijk
   AccessExpire: 86400
 # $AccessSecret：生成jwt token的密钥，最简单的方式可以使用一个uuid值。
 # $AccessExpire：jwt token有效期，单位：秒
+
+UserRpcConf:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc

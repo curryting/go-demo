@@ -49,6 +49,17 @@ type (
 	}
 )
 
+// 用户信息
+type (
+	UserInfoReq {
+		Id int64 `json:"id"`
+	}
+	UserInfoRes {
+		Id   int64  `json:"id"`
+		Name string `json:"name"`
+	}
+)
+
 @server(
 	group: user
 )
@@ -65,4 +76,8 @@ service user-api {
 	@doc "查询用户信息"
 	@handler search
 	get /user/search (SearchReq) returns (SearchReply)
+	
+	@doc "查询用户信息"
+	@handler userInfo
+	get /user/userInfo (UserInfoReq) returns (UserInfoRes)
 }

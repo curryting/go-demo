@@ -28,6 +28,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/user/search",
 				Handler: user.SearchHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/user/userInfo",
+				Handler: user.UserInfoHandler(serverCtx),
+			},
 		},
 	)
 }

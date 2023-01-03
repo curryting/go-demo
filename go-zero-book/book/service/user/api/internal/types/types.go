@@ -37,3 +37,12 @@ type RegisterReq struct {
 type RegisterRes struct {
 	Msg string `json:"msg"`
 }
+
+type UserInfoReq struct {
+	Id int64 `json:"id"`
+}
+
+type UserInfoRes struct {
+	Id   int64  `json:"id"`
+	Name string `json:"name"`
+}
