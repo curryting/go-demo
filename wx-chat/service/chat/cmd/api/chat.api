@@ -1,0 +1,31 @@
+syntax = "v1"
+
+info(
+	author: "curryting"
+	date:   "2023-01-13"
+	desc:   "微信聊天api聊天模块"
+)
+// 聊天列表参数
+type (
+	ChatList {
+		Uid      string `json:"uid"`
+		Username string `json:"username"`
+		Content  string `json:"content"`
+	}
+	ChatListReq {
+		Uid string `json:"uid"`
+	}
+	ChatListRes {
+		List []ChatList `json:"list"`
+	}
+)
+
+@server(
+	group: chat
+)
+
+service chat-api {
+	@doc "聊天列表"
+	@handler list
+	get /chat/list (ChatListReq) returns (ChatListRes)
+}
