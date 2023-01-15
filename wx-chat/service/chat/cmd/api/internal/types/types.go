@@ -2,13 +2,13 @@
 package types
 
 type ChatList struct {
-	Uid      string `json:"uid"`
+	Uid      int    `json:"uid"`
 	Username string `json:"username"`
 	Content  string `json:"content"`
 }
 
 type ChatListReq struct {
-	Uid string `json:"uid"`
+	Uid int `form:"uid"`
 }
 
 type ChatListRes struct {

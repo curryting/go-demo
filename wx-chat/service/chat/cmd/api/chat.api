@@ -8,12 +8,12 @@ info(
 // 聊天列表参数
 type (
 	ChatList {
-		Uid      string `json:"uid"`
+		Uid      int    `json:"uid"`
 		Username string `json:"username"`
 		Content  string `json:"content"`
 	}
 	ChatListReq {
-		Uid string `json:"uid"`
+		Uid int `form:"uid"`
 	}
 	ChatListRes {
 		List []ChatList `json:"list"`
