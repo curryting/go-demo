@@ -44,7 +44,7 @@ func (l *AddUserLogic) AddUser(in *__.AddUserReq) (*__.CommonRes, error) {
 			UpdateTime: time.Time{},
 		})
 	} else if err == nil {
-		return CommonErrorRes(100014, "username已存在"), nil
+		return CommonErrorRes(100014, in.Username+"已存在"), nil
 	} else {
 		return nil, err
 	}

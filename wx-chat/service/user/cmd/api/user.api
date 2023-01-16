@@ -64,7 +64,7 @@ service user-api {
 	@handler register
 	get /user/register (RegisterReq) returns (CommonRes)
 	
-	@doc "查询用户信息"
-	@handler findUser
-	get /user/findUser (FindUserReq) returns (FindUserRes)
+	// @doc "查询用户信息"
+	// @handler findUser
+	// get /user/findUser (FindUserReq) returns (FindUserRes)
 }

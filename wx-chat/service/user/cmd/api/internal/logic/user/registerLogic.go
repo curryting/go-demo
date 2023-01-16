@@ -2,15 +2,11 @@ package user
 
 import (
 	"context"
-	"errors"
-	"log"
-	"strings"
-	"wx-chat/service/user/model"
-
+	"github.com/zeromicro/go-zero/core/logx"
+	"wx-chat/common"
 	"wx-chat/service/user/cmd/api/internal/svc"
 	"wx-chat/service/user/cmd/api/internal/types"
-
-	"github.com/zeromicro/go-zero/core/logx"
+	__ "wx-chat/service/user/cmd/rpc/pb"
 )
 
 type RegisterLogic struct {
@@ -27,27 +23,19 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 	}
 }
 
-func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.CommonRes, err error) {
-	if len(strings.TrimSpace(req.Username)) == 0 || len(strings.TrimSpace(req.Password)) == 0 {
-		return nil, errors.New("参数错误")
-	}
-	userInfo, err := l.svcCtx.UserModel.FindOneByUsername(l.ctx, req.Username)
-	log.Println("查询用户信息结果：", userInfo)
-	//if err != nil {
-	//	return nil, err
+func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *common.HttpResponse, err error) {
+	//if len(strings.TrimSpace(req.Username)) == 0 {
+	//	return common.JsonResponse(100011, "Username不能为空"), nil
 	//}
-	if err != model.ErrNotFound {
-		return nil, errors.New("用户名已存在")
-	}
-
-	insertRes, err := l.svcCtx.UserModel.Insert(l.ctx, &model.WxUser{
+	//if len(strings.TrimSpace(req.Username)) > 10 {
+	//	return common.JsonResponse(100012, "Username过长"), nil
+	//}
+	userRpcRes, error := l.svcCtx.UserRpcClient.AddUser(l.ctx, &__.AddUserReq{
 		Username: req.Username,
-		Password: req.Password,
 		Gender:   req.Gender,
 	})
-	if err != nil {
+	if error != nil {
 		return nil, err
 	}
-	log.Println("注册结果返回：", insertRes)
-	return &types.CommonRes{IRet: 0, SMsg: "注册成功"}, nil
+	return common.JsonResponse(userRpcRes.IRet, userRpcRes.SMsg), nil
 }

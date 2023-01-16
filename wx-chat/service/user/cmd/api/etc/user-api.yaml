@@ -15,7 +15,7 @@
 Name: user-api
 Host: 0.0.0.0
 Port: 8001
-ChatRpcConf:
+UserRpcConf:
   Etcd:
     Hosts:
       - 127.0.0.1:2379
