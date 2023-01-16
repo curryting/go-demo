@@ -1,0 +1,8 @@
+Name: user.rpc
+ListenOn: 0.0.0.0:8889
+Etcd:
+  Hosts:
+  - 0.0.0.0:2379
+  Key: user.rpc
+Mysql:
+  DataSource: root:123456@tcp(127.0.0.1:3306)/curryting?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai

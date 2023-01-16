@@ -1,20 +1,19 @@
 package svc
 
 import (
-	"github.com/zeromicro/go-zero/core/stores/sqlx"
+	"github.com/zeromicro/go-zero/zrpc"
 	"wx-chat/service/user/cmd/api/internal/config"
-	"wx-chat/service/user/model"
+	"wx-chat/service/user/cmd/rpc/usercenter"
 )
 
 type ServiceContext struct {
-	Config    config.Config
-	UserModel model.WxUserModel
+	Config        config.Config
+	UserRpcClient usercenter.UserCenter
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	conn := sqlx.NewMysql(c.Mysql.DataSource)
 	return &ServiceContext{
-		Config:    c,
-		UserModel: model.NewWxUserModel(conn),
+		Config:        c,
+		UserRpcClient: usercenter.NewUserCenter(zrpc.MustNewClient(c.UserRpcConf)),
 	}
 }

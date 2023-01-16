@@ -27,7 +27,7 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 	}
 }
 
-func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.RegisterRes, err error) {
+func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.CommonRes, err error) {
 	if len(strings.TrimSpace(req.Username)) == 0 || len(strings.TrimSpace(req.Password)) == 0 {
 		return nil, errors.New("参数错误")
 	}
@@ -49,5 +49,5 @@ func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.RegisterRe
 		return nil, err
 	}
 	log.Println("注册结果返回：", insertRes)
-	return &types.RegisterRes{Msg: "注册成功"}, nil
+	return &types.CommonRes{IRet: 0, SMsg: "注册成功"}, nil
 }

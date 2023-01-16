@@ -1,14 +1,22 @@
+#Name: user-api
+#Host: 0.0.0.0
+#Port: 8888
+#Mysql:
+#  DataSource: root:123456@tcp(127.0.0.1:3306)/curryting?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+#Auth:
+#  AccessSecret: abcdefghijk
+#  AccessExpire: 86400
+## $AccessSecret：生成jwt token的密钥，最简单的方式可以使用一个uuid值。
+## $AccessExpire：jwt token有效期，单位：秒
+#Log:
+#  ServiceName: user-api
+#  Mode: console
+#  Level: error
 Name: user-api
 Host: 0.0.0.0
-Port: 8888
-Mysql:
-  DataSource: root:123456@tcp(127.0.0.1:3306)/curryting?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
-Auth:
-  AccessSecret: abcdefghijk
-  AccessExpire: 86400
-# $AccessSecret：生成jwt token的密钥，最简单的方式可以使用一个uuid值。
-# $AccessExpire：jwt token有效期，单位：秒
-Log:
-  ServiceName: user-api
-  Mode: console
-  Level: error
+Port: 8001
+ChatRpcConf:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc

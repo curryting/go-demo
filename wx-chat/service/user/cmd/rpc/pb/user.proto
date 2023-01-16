@@ -1,0 +1,32 @@
+syntax = "proto3";
+//import public "google/protobuf/timestamp.proto";
+option go_package = "./";
+
+package pb;
+
+message UserReq {
+  int64 uid = 1;
+}
+message UserRes {
+  int64 uid = 1;
+  string username = 2;
+  string password = 3;
+  int64 gender = 4;
+//  google.protobuf.Timestamp create_time = 5;
+//  google.protobuf.Timestamp update_time = 6;
+}
+
+message AddUserReq {
+  string username = 1;
+  int64 gender = 2;
+}
+message CommonRes {
+  int64 iRet = 1;
+  string sMsg = 2;
+}
+
+service UserCenter {
+  rpc FindUser(UserReq) returns (UserRes);  // 查询用户
+  rpc AddUser(AddUserReq) returns (CommonRes); // 新增用户
+  rpc UpdateUser(UserReq) returns (CommonRes); // 修改用户
+}

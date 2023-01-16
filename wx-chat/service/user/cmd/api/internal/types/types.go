@@ -2,36 +2,22 @@
 package types
 
 type RegisterReq struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Gender   int64`json:"gender"`
-}
-
-type RegisterRes struct {
-	Msg string `json:"msg"`
-}
-
-type LoginReq struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-}
-
-type LoginRes struct {
-	Id           int64  `json:"id"`
-	Username     string `json:"username"`
-	Gender       int64 `json:"gender"`
-	AccessToken  string `json:"accessToken"`
-	AccessExpire int64  `json:"accessExpire"`
-	RefreshAfter int64  `json:"refreshAfter"`
+	Username string `form:"username"`
+	Gender   int64  `form:"gender"`
 }
 
 type FindUserReq struct {
-	Username string `form:"username"`
+	UserId string `form:"userId"`
 }
 
 type FindUserRes struct {
 	Id       int64  `json:"id"`
 	Username string `json:"username"`
 	Password string `json:"password"`
-	Gender   int64 `json:"gender"`
+	Gender   string `json:"gender"`
+}
+
+type CommonRes struct {
+	IRet int64  `json:"iRet"`
+	SMsg string `json:"sMsg"`
 }
