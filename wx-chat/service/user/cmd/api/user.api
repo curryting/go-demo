@@ -16,14 +16,20 @@ type (
 // 查询用户信息
 type (
 	FindUserReq {
-		UserId string `form:"userId"`
+		UserId int64 `form:"userId"`
 	}
 
-	FindUserRes {
+	FindUser {
 		Id       int64  `json:"id"`
 		Username string `json:"username"`
 		Password string `json:"password"`
-		Gender   string `json:"gender"`
+		Gender   int64  `json:"gender"`
+	}
+
+	FindUserRes {
+		IRet  int64    `json:"iRet"`
+		SMsg  string   `json:"sMsg"`
+		SData FindUser `json:"sData"`
 	}
 )
 
@@ -64,7 +70,7 @@ service user-api {
 	@handler register
 	get /user/register (RegisterReq) returns (CommonRes)
 	
-	// @doc "查询用户信息"
-	// @handler findUser
-	// get /user/findUser (FindUserReq) returns (FindUserRes)
+	@doc "查询用户信息"
+	@handler findUser
+	get /user/findUser (FindUserReq) returns (FindUserRes)
 }

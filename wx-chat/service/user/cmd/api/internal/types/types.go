@@ -7,14 +7,20 @@ type RegisterReq struct {
 }
 
 type FindUserReq struct {
-	UserId string `form:"userId"`
+	UserId int64 `form:"userId"`
 }
 
-type FindUserRes struct {
+type FindUser struct {
 	Id       int64  `json:"id"`
 	Username string `json:"username"`
 	Password string `json:"password"`
-	Gender   string `json:"gender"`
+	Gender   int64  `json:"gender"`
+}
+
+type FindUserRes struct {
+	IRet  int64    `json:"iRet"`
+	SMsg  string   `json:"sMsg"`
+	SData FindUser `json:"sData"`
 }
 
 type CommonRes struct {
